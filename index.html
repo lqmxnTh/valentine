@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn {
+            font-size: 16px;
+            color: white;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .to-appear-success {
+            display: none;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow-y: hidden;
+            /* Hide vertical scrollbar */
+            overflow-x: hidden;
+            /* Hide horizontal scrollbar */
+        }
+
+        .img-resize {
+            height: 120px;
+            width: 120px;
+        }
+
+        .red-btn {
+            background-color: red;
+        }
+
+        .green-btn {
+            background-color: teal;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img id="to-disappear-success" class="to-disappear-success img-resize"
+            src="https://media.tenor.com/z3CNbYIb7wsAAAAi/tkthao219-bubududu.gif" alt="">
+        <img id="to-appear-success" class="to-appear-success img-resize"
+            src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" alt="">
+    </div>
+    <div>
+        <h2 id="sillyPhrase">Will You Love Me?</h2>
+
+    </div>
+    <div>
+        <button id="yesBtn" class="btn green-btn">Yes</button>
+        <button id="noBtn" class="btn red-btn">No</button>
+    </div>
+    <div>
+        <h3 id="count"></h3>
+    </div>
+    <div id="to-appear-success-2" class="to-appear-success">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSc4ZFEErzaGSXOGceDPwEfYTQpW4SvZJVbXoZsuROdpiOw-tw/viewform?usp=sf_link"> Please fill this form for a soon amazing experience </a>
+    </div>
+
+    <script>
+        var sillyPhrases = ["Are you sure?", "sure sure?", "Whyyyy?", "Pookie Please", "You are breaking my heart", "Why are you like this", "last chance"];
+        var currentPhraseIndex = 0;
+        let count = 0;
+
+        document.getElementById("noBtn").addEventListener("click", function () {
+            count += 1
+            var sillyPhraseElement = document.getElementById("noBtn");
+            var yesBtn = document.getElementById("yesBtn");
+            var fontSize = window.getComputedStyle(yesBtn).getPropertyValue('font-size');
+            var currentSize = parseFloat(fontSize);
+            var newSize = currentSize + 15;
+            yesBtn.style.fontSize = newSize + "px";
+            sillyPhraseElement.textContent = sillyPhrases[currentPhraseIndex];
+            currentPhraseIndex = (currentPhraseIndex + 1) % sillyPhrases.length;
+        });
+
+        document.getElementById("yesBtn").addEventListener("click", function () {
+            var sillyPhraseElement = document.getElementById("sillyPhrase");
+            var yesbtn = document.getElementById("yesBtn");
+            var nobtn = document.getElementById("noBtn");
+            var to_appear = document.getElementById("to-appear-success");
+            var to_appear_2 = document.getElementById("to-appear-success-2");
+            var to_disappear = document.getElementById("to-disappear-success");
+            var zcount = document.getElementById("count");
+            sillyPhraseElement.textContent = 'See You Next Satuday!'
+            if (count !== 0) {
+                zcount.textContent = "It Took You " + count + " try to Agree!"
+            }
+
+            yesbtn.style.display = 'none'
+            nobtn.style.display = 'none'
+            to_appear.style.display = 'block'
+            to_appear_2.style.display = 'block'
+            to_disappear.style.display = 'none'
+
+        });
+
+    </script>
+</body>
+
+</html>
